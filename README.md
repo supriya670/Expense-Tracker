@@ -2,12 +2,15 @@
 Track and manage expenses using efficient tables and visualizations
 
 Introduction:
+
 The Expense Tracker application is designed to help users efficiently track their expenses and manage their finances. It provides a user-friendly interface to input, categorize, and view expenses, as well as analyze spending trends over time. The application allows users to add new expenses, view expenses by category, and visualize their financial trends through graphs and charts.
 
 Problem Domain:
+
 In today's fast-paced world, managing personal finances can be challenging. Many people struggle with tracking their daily expenses and understanding where their money is going. This application aims to solve that problem by providing an easy-to-use tool for individuals to record their expenses, categorize them, and gain insights into their financial behavior. The application can be particularly useful for people looking to stick to a budget or gain better control over their spending.
 
 Expected Outcome and Solution:
+
 The primary goal of the Expense Tracker is to help users:
 1.	Add Expenses: Users can add new expenses with details such as date, amount, category, and description.
 2.	View Expenses by Category: Expenses are grouped by categories such as housing, transportation, food, etc., providing a clear breakdown of where money is being spent.
@@ -27,6 +30,7 @@ Below is a list of the most relevant DSA concepts used in this project:
 5. Sliding Window Algorithm: The sliding window algorithm is used to calculate trends over a period (e.g., the last 7 days). 
 
 Software Required:
+
 1.	Flask: The web framework for building the application.
 2.	SQLite: A lightweight database for storing expenses data.
 3.	Chart.js: A JavaScript library used for creating charts to visualize spending trends.
@@ -35,6 +39,7 @@ Software Required:
 6.	Bootstrap: For responsive layout and design.
 
 Methodology
+
 1.	Backend:
 - The application is built using Flask, which serves as the backend server.
 -	SQLite is used to store user expenses, which are stored in an expenses table.
@@ -50,4 +55,5 @@ Methodology
    Expense Overview: Displays a table with all expenses and their details.
 
 Conclusion
+
 The Expense Tracker is an easy-to-use tool that empowers individuals to monitor their expenses, understand their financial habits, and make informed decisions. By visualizing trends and providing detailed breakdowns, this application allows users to stay on top of their budget and control their spending. The combination of a simple user interface, powerful backend features, and data visualization tools makes the Expense Tracker an effective solution for personal financial management.
