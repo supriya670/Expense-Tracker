@@ -53,6 +53,17 @@ Methodology
 -	Category Breakdown: A page that shows the total amount spent in each category, along with a pie chart visualization.
 -	Spending Trends: A page that displays spending patterns over the last 7 days using a line chart.
    Expense Overview: Displays a table with all expenses and their details.
+Home page view:
+![image](https://github.com/user-attachments/assets/8e098def-dd92-4300-b0eb-beb4819275ce)
+Add Expense view:
+![image](https://github.com/user-attachments/assets/cc091f21-c32c-4866-abcb-5c08c788f059)
+
+Category Breakdown view:
+![image](https://github.com/user-attachments/assets/fa11b1e3-b9f3-4285-b1b2-429480de4b1b)
+Spending Trends view:
+![image](https://github.com/user-attachments/assets/c728bdd0-75f1-4645-9022-1172177c008e)
+
+
 
 Conclusion
 
