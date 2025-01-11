@@ -1,13 +1,4 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #343a40;
-    margin: 0;
-    padding: 0;
-}
-
-h1,h2, h3, h5,p {
+h1, h3, h5,p {
     font-weight: bold;
     text-align: center;
 }
@@ -22,7 +13,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Navbar Placeholder */
 .navbar {
     background-color: #343a40;
     padding: 10px 20px;
@@ -41,7 +31,6 @@ a:hover {
 }
 
 
-/* Card and Box Styles */
 .card {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -94,7 +83,6 @@ a:hover {
 }
 
 
-/* Full Screen Container */
 .full-screen-container {
     display: flex;
     flex-wrap: wrap;
@@ -106,7 +94,6 @@ a:hover {
     max-width: 1200px;
 }
 
-/* Table Container */
 .table-container {
     flex: 1;
     min-width: 300px;
@@ -146,14 +133,12 @@ table tbody tr:last-child td {
 }
 
 
-
 h2 {
     text-align: center;
     color: #2b03a5;
     margin-bottom: 20px;
 }
 
-/* Form Styling */
 form {
     max-width: 600px;
     margin: 20px auto;
@@ -215,7 +200,6 @@ button:hover {
     background-color: #00c12d;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     form {
         padding: 15px;
@@ -226,7 +210,7 @@ button:hover {
     }
 }
 
-/* General Styles */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -243,35 +227,31 @@ h1 {
 
 
 /* Chart Container */
-/* Chart Container */
 .chart-container {
-    max-width: 1000px; /* Increased maximum width for a larger container */
-    /*margin: 30px auto;  Added more spacing around the container */
-    padding: 40px; /* Increased padding for better content spacing */
-    background-color: #f9f9f9; /* Subtle off-white for a soft appearance */
-    border-radius: 15px; /* Rounded corners for a modern look */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for a lifted appearance */
-    border: 1px solid #e0e0e0; /* Light border for a clean design */
+    max-width: 1000px; 
+    padding: 40px; 
+    background-color: #f9f9f9; 
+    border-radius: 15px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    border: 1px solid #e0e0e0; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center-aligns content inside the container */
+    align-items: center; 
     justify-content: center;
 }
 
-/* Canvas Styling */
+
 canvas {
-    width: 90%; /* Explicitly set the width for larger charts */
-    height: 500px; /* Increased height for better visibility */
-    border-radius: 10px; /* Matches the container's rounded style */
-    margin-top: 10px; /* Adds spacing above the chart */
+    width: 90%; 
+    height: 500px; 
+    border-radius: 10px; 
+    margin-top: 10px; 
     justify-content: center;
     justify-items: center;
     align-items: center;
 }
 
 
-
-/* Table Styles */
 table {
     width: 90%;
     margin: 20px auto;
@@ -284,7 +264,7 @@ table {
 
 table th, table td {
     padding: 15px;
-    text-align: center; /* Center alignment for both header and data */
+    text-align: center; 
     border-bottom: 1px solid #ddd;
 }
 
@@ -303,7 +283,6 @@ table tbody tr:last-child td {
 }
 
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .chart-container {
         padding: 15px;
@@ -315,7 +294,7 @@ table tbody tr:last-child td {
     }
 }
 
-/* Box Styles */
+
 .box {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -327,9 +306,9 @@ table tbody tr:last-child td {
 }
 
 .box img {
-    width: 100%; /* Ensures the image takes up the full width of the box */
-    height: 200px; /* Set a fixed height for consistency */
-    object-fit: cover; /* Ensures the image fills the box without distortion */
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
     border-radius: 10px;
     transition: transform 0.3s;
 }
@@ -346,31 +325,30 @@ table tbody tr:last-child td {
 }
 
 .box:hover {
-    transform: scale(1.05); /* Adds a slight zoom effect on hover */
+    transform: scale(1.05); 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .box img:hover {
-    transform: scale(1.1); /* Adds a subtle zoom effect to the image on hover */
+    transform: scale(1.1);
 }
 
 .table-centered thead th {
-    background-color: #2b03a5; /* Header background color */
-    color: white; /* Header text color */
+    background-color: #2b03a5; 
+    color: white; 
 }
 
-/* Decrease the row height */
 .table-centered tbody td {
-    padding: 5px 10px; /* Adjust padding to decrease row height */
+    padding: 5px 10px; 
 }
 
-/* Optional: Center text in the table */
+
 .table-centered th, 
 .table-centered td {
-    text-align: center; /* Center align text */
-    vertical-align: middle; /* Vertically center text */
+    text-align: center; 
+    vertical-align: middle; 
 }
 .card-header {
-    background-color: #2b03a5; /* Set card header color */
-    color: white; /* Set card header text color */
+    background-color: #2b03a5; 
+    color: white; 
 }
