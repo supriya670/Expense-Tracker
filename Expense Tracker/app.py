@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 from datetime import datetime, timedelta
+from collections import defaultdict
 
 app = Flask(__name__)
 
@@ -9,11 +10,10 @@ import sqlite3
 
 def get_db_connection():
     con = sqlite3.connect('expenses.db')
-    con.row_factory = sqlite3.Row  # This makes rows behave like dictionaries
+    con.row_factory = sqlite3.Row  
     return con
 
 
-# Database initialization
 def init_db():
     conn = sqlite3.connect('expenses.db')
     c = conn.cursor()
@@ -29,7 +29,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Helper function: get all expenses
+
 def get_all_expenses():
     conn = sqlite3.connect('expenses.db')
     c = conn.cursor()
@@ -38,7 +38,6 @@ def get_all_expenses():
     conn.close()
     return expenses
 
-# Helper function: aggregate expenses by category
 def aggregate_expenses_by_category():
     conn = sqlite3.connect('expenses.db')
     c = conn.cursor()
@@ -47,7 +46,7 @@ def aggregate_expenses_by_category():
     conn.close()
     return dict(data)
 
-# Helper function: get spending trends using a sliding window
+#spending trends using a sliding window
 def get_spending_trends(days=7):
     conn = sqlite3.connect('expenses.db')
     c = conn.cursor()
@@ -62,11 +61,10 @@ def get_spending_trends(days=7):
     data = c.fetchall()
     conn.close()
 
-    # Convert to a list of daily totals
     trends = {}
     for i in range(days + 1):
         day = (start_date + timedelta(days=i)).strftime('%Y-%m-%d')
-        trends[day] = 0  # Default to 0 if no expenses
+        trends[day] = 0 
     for date, amount in data:
         trends[date] = amount
     return trends
@@ -76,10 +74,8 @@ def get_spending_trends(days=7):
 def home():
     conn = get_db_connection()
 
-    # Get the first day of the current month and subtract 6 months
     six_months_ago = (datetime.now().replace(day=1) - timedelta(days=180)).strftime('%Y-%m-01')
 
-    # Fetch expenses grouped by month (last 6 months)
     query = """
         SELECT 
             strftime('%Y-%m', date) AS month, 
@@ -93,7 +89,6 @@ def home():
     """
     monthly_totals = conn.execute(query, (six_months_ago,)).fetchall()
 
-    # Fetch individual expenses for the last 6 months
     expenses_query = """
         SELECT 
             id, 
@@ -109,7 +104,6 @@ def home():
     expenses = conn.execute(expenses_query, (six_months_ago,)).fetchall()
     conn.close()
 
-    # Format the data for rendering
     grouped_expenses = {}
     for month_row in monthly_totals:
         month_name = datetime.strptime(f"{month_row['month_number']}", "%m").strftime('%B')
@@ -154,7 +148,6 @@ def categories():
     category_names = list(category_data.keys())
     category_amounts = list(category_data.values())
 
-    # Generate last 6 months for dropdown
     today = datetime.now()
     grouped_months = {}
     for i in range(6):
@@ -178,7 +171,6 @@ def filter_categories():
 
     conn = get_db_connection()
     if selected_month and selected_month != 'all':
-        # Parse selected month into a date range
         month_start = datetime.strptime(selected_month, '%B %Y').replace(day=1)
         next_month_start = (month_start + timedelta(days=31)).replace(day=1)
 
@@ -190,7 +182,6 @@ def filter_categories():
         """
         data = conn.execute(query, (month_start.strftime('%Y-%m-%d'), next_month_start.strftime('%Y-%m-%d'))).fetchall()
     else:
-        # Default to last 6 months
         six_months_ago = (datetime.now().replace(day=1) - timedelta(days=180)).strftime('%Y-%m-01')
         query = """
             SELECT category, SUM(amount) 
@@ -202,14 +193,12 @@ def filter_categories():
 
     conn.close()
 
-    # Prepare response data
     categories = {row["category"]: row["SUM(amount)"] for row in data}
     return {
         "categories": [{"name": k, "amount": v} for k, v in categories.items()],
         "category_names": list(categories.keys()),
         "category_amounts": list(categories.values()),
     }
-
 
 
 @app.route('/trends')
@@ -222,16 +211,11 @@ def trends():
 
 @app.route('/dashboard')
 def dashboard():
-    # Fetch all expenses
+    
     conn = get_db_connection()
     expenses = conn.execute('SELECT * FROM expenses').fetchall()
     conn.close()
     
-    # Process expenses for sliding window analysis and category summary
-    from datetime import datetime, timedelta
-    from collections import defaultdict
-    
-    # Convert expenses into a list of dictionaries
     expenses_list = [
         {
             'date': datetime.strptime(expense['date'], '%Y-%m-%d'),
@@ -241,15 +225,13 @@ def dashboard():
         for expense in expenses
     ]
     
-    # Sliding Window for Weekly/Monthly Expense Analysis
     expenses_by_date = defaultdict(float)
     for expense in expenses_list:
         expenses_by_date[expense['date']] += expense['amount']
     sorted_dates = sorted(expenses_by_date.keys())
     
-    # Generate sliding window totals (weekly)
     weekly_totals = []
-    window_size = 7  # 7 days for a week
+    window_size = 7  
     for i in range(len(sorted_dates)):
         start_date = sorted_dates[i]
         end_date = start_date + timedelta(days=window_size)
@@ -264,13 +246,12 @@ def dashboard():
     for expense in expenses_list:
         category_totals[expense['category']] += expense['amount']
     
-    # Monthly view (grouped by months)
+    # grouped by months
     monthly_totals = defaultdict(float)
     for expense in expenses_list:
         month_year = expense['date'].strftime('%Y-%m')
         monthly_totals[month_year] += expense['amount']
     
-    # Pass data to template
     return render_template(
         'dashboard.html',
         weekly_totals=weekly_totals,
