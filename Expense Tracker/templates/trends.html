@@ -3,12 +3,10 @@
 {% block content %}
 <h1 >Spending Trends (Last 7 Days)</h1>
 
-<!-- Chart Container -->
 <div class="chart-container">
     <canvas id="trendsLineChart"></canvas>
 </div>
 
-<!-- Table -->
 <table class="table table-striped mt-4">
     <thead>
         <tr>
@@ -26,7 +24,6 @@
     </tbody>
 </table>
 
-<!-- Chart.js Script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const dates = {{ dates | tojson }};
